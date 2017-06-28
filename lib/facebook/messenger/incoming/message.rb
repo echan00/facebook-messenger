@@ -21,6 +21,10 @@ module Facebook
           @messaging['message']['is_echo']
         end
 
+        def metadata
+          @messaging['message']['metadata']
+        end
+
         def attachments
           @messaging['message']['attachments']
         end
