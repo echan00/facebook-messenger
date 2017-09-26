@@ -26,7 +26,6 @@ module Facebook
         if @request.get?
           verify
         elsif @request.post?
-        	ap @request
           receive
         else
           @response.status = 405
@@ -129,12 +128,20 @@ module Facebook
         events['entry'.freeze].each do |entry|
           # If the application has subscribed to webhooks other than Messenger,
           # 'messaging' won't be available and it is not relevant to us.
-          next unless entry['messaging'.freeze]
+          puts "ENTRY"
+          puts entry
+          next unless (entry['messaging'.freeze] || entry['conversations'.freeze])
           # Facebook may batch several items in the 'messaging' array during
           # periods of high load.
-          entry['messaging'.freeze].each do |messaging|
-            Facebook::Messenger::Bot.receive(messaging)
-          end
+          if entry['messaging'.freeze]
+	          entry['messaging'.freeze].each do |messaging|
+	            Facebook::Messenger::Bot.receive(messaging)
+	          end
+	        elsif entry['conversations'.freeze]
+	          entry['conversations'.freeze].each do |convo|
+	            puts convo
+	          end	        	
+	        end	        	
         end
       end
 
