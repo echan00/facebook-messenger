@@ -66,7 +66,15 @@ module Facebook
         def receive(payload)
           callback = Facebook::Messenger::Incoming.parse(payload)
           event = Facebook::Messenger::Incoming::EVENTS.invert[callback.class]
+          puts "callback "
+          puts callback
+          puts "event "
+          puts event
           trigger(event.to_sym, callback)
+        end
+
+        def receive_convo(payload)
+        	trigger(:conversation, payload)
         end
 
         # Trigger the hook for the given event.
