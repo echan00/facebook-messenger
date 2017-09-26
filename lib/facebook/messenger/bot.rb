@@ -19,6 +19,7 @@ module Facebook
         referral
         message_echo
         message_request
+        conversation
       ].freeze
 
       class << self

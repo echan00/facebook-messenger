@@ -128,8 +128,6 @@ module Facebook
         events['entry'.freeze].each do |entry|
           # If the application has subscribed to webhooks other than Messenger,
           # 'messaging' won't be available and it is not relevant to us.
-          puts "ENTRY"
-          puts entry
           next unless (entry['messaging'.freeze] || entry['conversations'.freeze])
           # Facebook may batch several items in the 'messaging' array during
           # periods of high load.
@@ -138,8 +136,9 @@ module Facebook
 	            Facebook::Messenger::Bot.receive(messaging)
 	          end
 	        elsif entry['conversations'.freeze]
+	        	puts "HELLO"
 	          entry['conversations'.freeze].each do |convo|
-	            puts convo
+	            Facebook::Messenger::Bot.receive(convo)
 	          end	        	
 	        end	        	
         end
