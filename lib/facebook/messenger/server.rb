@@ -123,8 +123,6 @@ module Facebook
       end
 
       def trigger(events)
-				puts "EVENT"
-      	puts events
         # Facebook may batch several items in the 'entry' array during
         # periods of high load.
         events['entry'.freeze].each do |entry|
