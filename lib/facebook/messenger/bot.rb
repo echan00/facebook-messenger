@@ -19,7 +19,7 @@ module Facebook
         referral
         message_echo
         message_request
-        conversation
+        feed
       ].freeze
 
       class << self
@@ -66,16 +66,12 @@ module Facebook
         def receive(payload)
           callback = Facebook::Messenger::Incoming.parse(payload)
           event = Facebook::Messenger::Incoming::EVENTS.invert[callback.class]
-          puts "callback "
-          puts callback
-          puts "event "
-          puts event
           trigger(event.to_sym, callback)
         end
 
-        # Used for receiving webhooks about conversations (updates to fb page), NOT MESSENGER
+        # Used for receiving webhooks about feed changes (updates to fb page), NOT MESSENGER
         def receive_convo(payload)
-        	trigger(:conversation, payload)
+        	trigger(:feed, payload)
         end
 
         # Trigger the hook for the given event.
