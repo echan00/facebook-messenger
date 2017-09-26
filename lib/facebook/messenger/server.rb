@@ -26,6 +26,7 @@ module Facebook
         if @request.get?
           verify
         elsif @request.post?
+        	ap @request
           receive
         else
           @response.status = 405
