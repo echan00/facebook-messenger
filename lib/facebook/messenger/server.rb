@@ -136,8 +136,6 @@ module Facebook
 	            Facebook::Messenger::Bot.receive(messaging)
 	          end
 	        else
-	        	puts "B"
-	        	puts entry
 	          entry['changes'.freeze].each do |convo|
 	            Facebook::Messenger::Bot.receive_convo(convo)
 	          end	        	

@@ -73,6 +73,7 @@ module Facebook
           trigger(event.to_sym, callback)
         end
 
+        # Used for receiving webhooks about conversations (updates to fb page), NOT MESSENGER
         def receive_convo(payload)
         	trigger(:conversation, payload)
         end
