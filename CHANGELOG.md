@@ -1,5 +1,31 @@
 # Change Log
 
+## [1.0.0] - 2017-05-31
+
+### Added
+- You may now subscribe to message echoes without DDOSing yourself.
+
+## [0.13.0] - 2017-05-18
+
+### Added
+- `Message#app_id` yields the application ID for message echoes.
+- Helpers to determine the attachments of a message (e.g. `Message#image_attachment?`).
+
+### Changed
+- `Thread` is now `Profile` to correspond with Facebook's API.
+
+## [0.12.0] - 2017-03-31
+### Added
+- Various errors from the Facebook Messenger platform are now subclasses of
+  `Facebook::Messenger::Errors` to allow easier error handling.
+- `Message#mark_seen` will mark the received message as seen.
+
+### Changed
+- `type` is now `typing_on` and `typing_off`.
+
+### Fixed
+- `Message#referral` now returns `nil` if there is no referral.
+
 ## [0.11.1] - 2016-11-23
 ### Fixed
 - Webhooks that don't have messaging will now be ignored rather than crash.

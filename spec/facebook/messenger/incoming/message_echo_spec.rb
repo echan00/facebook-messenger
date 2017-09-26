@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Facebook::Messenger::Incoming::Message do
+describe Facebook::Messenger::Incoming::MessageEcho do
   let :payload do
     {
       'sender' => {
@@ -11,7 +11,7 @@ describe Facebook::Messenger::Incoming::Message do
       },
       'timestamp' => 145_776_419_762_7,
       'message' => {
-        'is_echo' => false,
+        'is_echo' => true,
         'app_id' => 184_719_329_217_930_000,
         'mid' => 'mid.1457764197618:41d102a3e1ae206a38',
         'seq' => 73,
@@ -24,26 +24,7 @@ describe Facebook::Messenger::Incoming::Message do
           'payload' => {
             'url' => 'https://www.example.com/1.jpg'
           }
-        }],
-        'nlp' => {
-          'entities' => {
-            'datetime' => [
-              {
-                'confidence' => 0.97249440664957,
-                'values' => ['...'],
-                'value' => '2017-05-10T14:00:00.000-07:00',
-                'grain' => 'hour',
-                'type' => 'value'
-              }
-            ],
-            'greetings' => [
-              {
-                'confidence' => 1,
-                'value' => 'true'
-              }
-            ]
-          }
-        }
+        }]
       }
     }
   end
@@ -58,7 +39,7 @@ describe Facebook::Messenger::Incoming::Message do
       },
       'timestamp' => 145_776_419_762_4,
       'message' => {
-        'is_echo' => false,
+        'is_echo' => true,
         'app_id' => 184_719_329_217_930_001,
         'mid' => 'mid.1457764197618:41d102a3e1ae206a38',
         'attachments' => [{
@@ -81,7 +62,7 @@ describe Facebook::Messenger::Incoming::Message do
       },
       'timestamp' => 145_776_412_762_4,
       'message' => {
-        'is_echo' => false,
+        'is_echo' => true,
         'app_id' => 184_719_329_217_930_001,
         'mid' => 'mid.1457764197618:41d102a3e1ae206a39',
         'attachments' => [{
@@ -104,7 +85,7 @@ describe Facebook::Messenger::Incoming::Message do
       },
       'timestamp' => 145_776_419_732_4,
       'message' => {
-        'is_echo' => false,
+        'is_echo' => true,
         'app_id' => 184_719_329_217_930_001,
         'mid' => 'mid.1457764197618:41d102a3e1ae206a48',
         'attachments' => [{
@@ -127,7 +108,7 @@ describe Facebook::Messenger::Incoming::Message do
       },
       'timestamp' => 145_776_429_762_4,
       'message' => {
-        'is_echo' => false,
+        'is_echo' => true,
         'app_id' => 184_719_329_222_930_001,
         'mid' => 'mid.1457764197618:41d102a3e1ae206a38',
         'attachments' => [{
@@ -143,7 +124,7 @@ describe Facebook::Messenger::Incoming::Message do
     }
   end
 
-  subject { Facebook::Messenger::Incoming::Message.new(payload) }
+  subject { Facebook::Messenger::Incoming::MessageEcho.new(payload) }
 
   describe '.messaging' do
     it 'returns the original payload' do
@@ -152,7 +133,7 @@ describe Facebook::Messenger::Incoming::Message do
   end
 
   describe '.id' do
-    it 'returns the message id' do
+    it 'returns the message echo id' do
       expect(subject.id).to eq(payload['message']['mid'])
     end
   end
@@ -170,37 +151,31 @@ describe Facebook::Messenger::Incoming::Message do
   end
 
   describe '.seq' do
-    it 'returns the message sequence number' do
+    it 'returns the message echo sequence number' do
       expect(subject.seq).to eq(payload['message']['seq'])
     end
   end
 
   describe '.sent_at' do
-    it 'returns when the message was sent' do
+    it 'returns when the message echo was sent' do
       expect(subject.sent_at).to eq(Time.at(payload['timestamp'] / 1000))
     end
   end
 
   describe '.text' do
-    it 'returns the text of the message' do
+    it 'returns the text of the message echo' do
       expect(subject.text).to eq(payload['message']['text'])
     end
   end
 
   describe '.echo?' do
-    it 'returns the echo status of the message' do
+    it 'returns the echo status of the message echo' do
       expect(subject.echo?).to eq(payload['message']['is_echo'])
     end
   end
 
-  describe '.nlp' do
-    it 'returns the message NLP entities' do
-      expect(subject.nlp).to eq(payload['message']['nlp'])
-    end
-  end
-
   describe '.attachments' do
-    it 'returns the message attachments' do
+    it 'returns the message echo attachments' do
       expect(subject.attachments).to eq(payload['message']['attachments'])
     end
   end
@@ -212,7 +187,7 @@ describe Facebook::Messenger::Incoming::Message do
   end
 
   describe '.video_attachment?' do
-    subject { Facebook::Messenger::Incoming::Message.new(video_payload) }
+    subject { Facebook::Messenger::Incoming::MessageEcho.new(video_payload) }
 
     it 'returns whether the attachment is a video' do
       expect(subject.video_attachment?).to be(true)
@@ -220,7 +195,7 @@ describe Facebook::Messenger::Incoming::Message do
   end
 
   describe '.location_attachment?' do
-    subject { Facebook::Messenger::Incoming::Message.new(location_payload) }
+    subject { Facebook::Messenger::Incoming::MessageEcho.new(location_payload) }
 
     it 'returns whether the attachment is a video' do
       expect(subject.location_attachment?).to be(true)
@@ -228,7 +203,7 @@ describe Facebook::Messenger::Incoming::Message do
   end
 
   describe '.audio_attachment?' do
-    subject { Facebook::Messenger::Incoming::Message.new(audio_payload) }
+    subject { Facebook::Messenger::Incoming::MessageEcho.new(audio_payload) }
 
     it 'returns whether the attachment is an audio' do
       expect(subject.audio_attachment?).to be(true)
@@ -236,7 +211,7 @@ describe Facebook::Messenger::Incoming::Message do
   end
 
   describe '.file_attachment?' do
-    subject { Facebook::Messenger::Incoming::Message.new(file_payload) }
+    subject { Facebook::Messenger::Incoming::MessageEcho.new(file_payload) }
 
     it 'returns whether the attachment is a file' do
       expect(subject.file_attachment?).to be(true)
@@ -244,7 +219,7 @@ describe Facebook::Messenger::Incoming::Message do
   end
 
   describe '.location_coordinates' do
-    subject { Facebook::Messenger::Incoming::Message.new(location_payload) }
+    subject { Facebook::Messenger::Incoming::MessageEcho.new(location_payload) }
 
     let(:attachments) { location_payload['message']['attachments'] }
 
@@ -274,7 +249,7 @@ describe Facebook::Messenger::Incoming::Message do
     end
   end
   describe '.app_id' do
-    it 'returns the app_id from which the message was sent' do
+    it 'returns the app_id from which the message echo was sent' do
       expect(subject.app_id).to eq(payload['message']['app_id'])
     end
   end
