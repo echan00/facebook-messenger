@@ -42,6 +42,9 @@ module Facebook
           Facebook::Messenger::Bot::ErrorParser.raise_errors_from(response)
 
           response.body
+          if response.body.present?
+            LogChat.new.perform(message, "deliver", nil) unless Rails.env.staging?
+          end
         end
 
         # Register a hook for the given event.
