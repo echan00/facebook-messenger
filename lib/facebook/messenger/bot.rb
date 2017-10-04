@@ -43,6 +43,10 @@ module Facebook
           Facebook::Messenger::Bot::ErrorParser.raise_errors_from(response)
 
           response.body
+          
+          puts response
+          puts "!!!!"
+          puts response.body
         end
 
         # Register a hook for the given event.
