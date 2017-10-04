@@ -45,7 +45,6 @@ module Facebook
           response.body
           
           json = {'qs': {"access_token": access_token},'uri': base_uri+"/messages", 'json': message, 'method': "POST", 'responseBody': response.body}
-          ap json
           trigger(:logging, json)
         end
 
@@ -80,7 +79,7 @@ module Facebook
         end
 
         # Used for logging 
-        def logging(events)
+        def logging(payload)
           trigger(:logging, payload)
         end
 
