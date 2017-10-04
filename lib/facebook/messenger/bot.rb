@@ -20,7 +20,7 @@ module Facebook
         message_echo
         message_request
         feed
-        events
+        logging
       ].freeze
 
       class << self
