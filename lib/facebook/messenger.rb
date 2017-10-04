@@ -6,7 +6,6 @@ require 'facebook/messenger/bot'
 require 'facebook/messenger/server'
 require 'facebook/messenger/configuration'
 require 'facebook/messenger/incoming'
-require 'facebook/messenger/dashbot'
 
 module Facebook
   # All the code for this gem resides in this module.

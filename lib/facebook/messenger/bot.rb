@@ -45,7 +45,6 @@ module Facebook
 
           puts "2"
           ap response
-          Facebook::Messenger::Dashbot.new.perform(request, "deliver", nil) unless Rails.env.staging?  
         end
 
         # Register a hook for the given event.
@@ -74,7 +73,6 @@ module Facebook
 
           puts "1"
           ap payload
-          Facebook::Messenger::Dashbot.new.perform(payload, "incoming", nil) unless Rails.env.staging?  
         end
 
         # Used for receiving webhooks about feed changes (updates to fb page), NOT MESSENGER
