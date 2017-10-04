@@ -134,8 +134,8 @@ module Facebook
           if entry['messaging'.freeze]
 	          entry['messaging'.freeze].each do |messaging|
 	            Facebook::Messenger::Bot.receive(messaging)
+              puts messaging
 	          end
-            puts messaging
 	        else
 	          entry['changes'.freeze].each do |convo|
 	            Facebook::Messenger::Bot.receive_convo(convo)
