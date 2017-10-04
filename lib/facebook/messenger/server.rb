@@ -123,7 +123,6 @@ module Facebook
       end
 
       def trigger(events)
-        puts events
         # Facebook may batch several items in the 'entry' array during
         # periods of high load.
         events['entry'.freeze].each do |entry|
@@ -142,6 +141,7 @@ module Facebook
 	          end	        	
 	        end	        	
         end
+        Facebook::Messenger::Bot.logging(events)
       end
 
       def respond_with_error(error)

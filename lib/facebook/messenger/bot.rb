@@ -20,6 +20,7 @@ module Facebook
         message_echo
         message_request
         feed
+        events
       ].freeze
 
       class << self
@@ -72,6 +73,11 @@ module Facebook
         # Used for receiving webhooks about feed changes (updates to fb page), NOT MESSENGER
         def receive_convo(payload)
         	trigger(:feed, payload)
+        end
+
+        # Used for logging 
+        def logging(events)
+          trigger(:logging, events)
         end
 
         # Trigger the hook for the given event.
