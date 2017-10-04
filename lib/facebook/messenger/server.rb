@@ -123,10 +123,10 @@ module Facebook
       end
 
       def trigger(events)
+        puts events
         # Facebook may batch several items in the 'entry' array during
         # periods of high load.
         events['entry'.freeze].each do |entry|
-          puts entry
           # If the application has subscribed to webhooks other than Messenger,
           # 'messaging' won't be available and it is not relevant to us.
           next unless (entry['messaging'.freeze] || entry['changes'.freeze])
