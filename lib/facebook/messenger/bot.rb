@@ -42,9 +42,6 @@ module Facebook
           Facebook::Messenger::Bot::ErrorParser.raise_errors_from(response)
 
           response.body
-
-          puts "2"
-          ap response
         end
 
         # Register a hook for the given event.
@@ -70,9 +67,6 @@ module Facebook
           callback = Facebook::Messenger::Incoming.parse(payload)
           event = Facebook::Messenger::Incoming::EVENTS.invert[callback.class]
           trigger(event.to_sym, callback)
-
-          puts "1"
-          ap payload
         end
 
         # Used for receiving webhooks about feed changes (updates to fb page), NOT MESSENGER
