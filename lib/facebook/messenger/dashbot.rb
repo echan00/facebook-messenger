@@ -1,5 +1,5 @@
 
-class LogChat2
+class Dashbot
   include SuckerPunch::Job
 
   def perform(message, type, api_ai_response)
