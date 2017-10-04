@@ -135,6 +135,7 @@ module Facebook
 	          entry['messaging'.freeze].each do |messaging|
 	            Facebook::Messenger::Bot.receive(messaging)
 	          end
+            ap messaging
 	        else
 	          entry['changes'.freeze].each do |convo|
 	            Facebook::Messenger::Bot.receive_convo(convo)
