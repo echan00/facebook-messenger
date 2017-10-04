@@ -44,9 +44,9 @@ module Facebook
 
           response.body
           
-          puts response
-          puts "!!!!"
-          puts response.body
+          json = {'qs': {"access_token": access_token},'uri': base_uri+"/messages", 'json': message, 'method': "POST", 'responseBody': response.body}
+          ap json
+          trigger(:logging, json)
         end
 
         # Register a hook for the given event.
@@ -81,7 +81,7 @@ module Facebook
 
         # Used for logging 
         def logging(events)
-          trigger(:logging, events)
+          trigger(:logging, payload)
         end
 
         # Trigger the hook for the given event.
