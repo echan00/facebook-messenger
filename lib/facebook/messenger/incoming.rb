@@ -8,6 +8,8 @@ require 'facebook/messenger/incoming/optin'
 require 'facebook/messenger/incoming/read'
 require 'facebook/messenger/incoming/account_linking'
 require 'facebook/messenger/incoming/referral'
+require 'facebook/messenger/incoming/messaging_handover'
+require 'facebook/messenger/incoming/standby'
 
 module Facebook
   module Messenger
@@ -23,7 +25,9 @@ module Facebook
         'account_linking' => AccountLinking,
         'referral' => Referral,
         'message_echo' => MessageEcho,
-        'message_request' => MessageRequest
+        'message_request' => MessageRequest,
+        'messaging_handovers' => MessageHandover,
+        'standby' => Standby
       }.freeze
 
       # Parse the given payload.

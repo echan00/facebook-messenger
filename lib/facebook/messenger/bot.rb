@@ -21,6 +21,7 @@ module Facebook
         message_request
         feed
         logging
+        messaging_handover
       ].freeze
 
       class << self
@@ -39,9 +40,7 @@ module Facebook
                           query: {
                             access_token: access_token
                           }
-
           Facebook::Messenger::Bot::ErrorParser.raise_errors_from(response)
-
           response.body
           
           json = {'qs': {"access_token": access_token},'uri': base_uri+"/messages", 'json': message, 'method': "POST", 'responseBody': response.body}
