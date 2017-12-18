@@ -8,7 +8,7 @@ require 'facebook/messenger/incoming/optin'
 require 'facebook/messenger/incoming/read'
 require 'facebook/messenger/incoming/account_linking'
 require 'facebook/messenger/incoming/referral'
-require 'facebook/messenger/incoming/messaging_handover'
+require 'facebook/messenger/incoming/message_handover'
 require 'facebook/messenger/incoming/standby'
 
 module Facebook
