@@ -19,9 +19,10 @@ module Facebook
         referral
         message_echo
         message_request
+        message_handover
         feed
         logging
-        messaging_handover
+        standby
       ].freeze
 
       class << self

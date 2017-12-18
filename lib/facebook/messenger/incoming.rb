@@ -26,7 +26,7 @@ module Facebook
         'referral' => Referral,
         'message_echo' => MessageEcho,
         'message_request' => MessageRequest,
-        'messaging_handovers' => MessageHandover,
+        'messaging_handover' => MessageHandover,
         'standby' => Standby
       }.freeze
 
