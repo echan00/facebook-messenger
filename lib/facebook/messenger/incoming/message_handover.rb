@@ -11,16 +11,16 @@ module Facebook
           @messaging['pass_thread_control']['new_owner_app_id']
         end
 
-        def metadata
-          @messaging['pass_thread_control']['metadata']
-        end
-
         def previous_owner_app_id
           @messaging['take_thread_control']['previous_owner_app_id']
         end
 
         def app_roles
           @messaging['app_roles']
+        end
+
+        def metadata
+          @messaging['pass_thread_control']['metadata']
         end
 
       end
