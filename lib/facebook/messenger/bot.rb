@@ -68,8 +68,11 @@ module Facebook
         #
         # * https://developers.facebook.com/docs/messenger-platform/webhook-reference
         def receive(payload)
+        	puts payload
           callback = Facebook::Messenger::Incoming.parse(payload)
+          puts callback
           event = Facebook::Messenger::Incoming::EVENTS.invert[callback.class]
+          puts event
           trigger(event.to_sym, callback)
         end
 

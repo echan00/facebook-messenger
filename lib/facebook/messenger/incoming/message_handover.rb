@@ -20,7 +20,11 @@ module Facebook
         end
 
         def metadata
-          @messaging['pass_thread_control']['metadata']
+        	if @messaging['take_thread_control'].present?
+        		@messaging['take_thread_control']['metadata']
+        	elsif @messaging['pass_thread_control'].present?
+        		@messaging['pass_thread_control']['metadata']
+        	end        		          
         end
 
       end
