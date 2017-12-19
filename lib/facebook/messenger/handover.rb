@@ -12,8 +12,7 @@ module Facebook
       module_function
 
       def pass_thread_control(settings, access_token:)
-      	puts settings
-        response = post '/pass_thread_control', body: settings.to_json, query: {
+        response = post '/pass_thread_control', body: settings, query: {
           access_token: access_token
         }
 
@@ -23,8 +22,7 @@ module Facebook
       end
 
       def take_thread_control(settings, access_token:)
-      	puts settings
-        response = post '/take_thread_control', body: settings.to_json, query: {
+        response = post '/take_thread_control', body: settings, query: {
           access_token: access_token
         }
 
