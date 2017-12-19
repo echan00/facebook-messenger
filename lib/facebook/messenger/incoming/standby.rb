@@ -15,6 +15,14 @@ module Facebook
           @messaging['message']['seq']
         end
 
+        def sender
+          @messaging['sender']
+        end
+
+        def recipient
+          @messaging['recipient']
+        end
+
       end
     end
   end
