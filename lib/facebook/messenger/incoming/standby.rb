@@ -7,18 +7,22 @@ module Facebook
       class Standby
         include Facebook::Messenger::Incoming::Common
 
-        def message?
-          @messaging['message'].present?
+        def log_type
+          if @messaging['message'].present?
+          	if @messaging['message']['is_echo'] == true
+          		return 'standby-message-echo'
+	          else
+		          return 'standby-message'
+		        end
+	        elsif @messaging['delivery'].present?
+						return 'standby-delivery'
+	        elsif	@messaging['postback'].present?
+	        	return 'standby-postback'
+        	elsif	@messaging['read'].present?
+						return 'standby-read'
+          end      
         end
-
-        def delivery?
-          @messaging['delivery'].present?
-        end
-
-        def read?
-          @messaging['read'].present?
-        end                
-
+         
         def text
           @messaging['message']['text']
         end
