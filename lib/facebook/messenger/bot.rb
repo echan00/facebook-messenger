@@ -79,7 +79,7 @@ module Facebook
         def receive_standby(payload)
         	callback = Facebook::Messenger::Incoming::Standby.new(payload)
         	event = Facebook::Messenger::Incoming::EVENTS.invert[callback.class]
-        	trigger(:standby, payload)
+        	trigger(event.to_sym, payload)
         end
 
         # Used for receiving webhooks about feed changes (updates to fb page), NOT MESSENGER
