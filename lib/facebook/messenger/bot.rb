@@ -76,6 +76,11 @@ module Facebook
         end
 
         # Used for receiving webhooks about feed changes (updates to fb page), NOT MESSENGER
+        def receive_standby(payload)
+        	trigger(:standby, payload)
+        end
+
+        # Used for receiving webhooks about feed changes (updates to fb page), NOT MESSENGER
         def receive_convo(payload)
         	trigger(:feed, payload)
         end

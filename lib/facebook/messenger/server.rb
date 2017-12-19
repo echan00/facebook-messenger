@@ -133,15 +133,11 @@ module Facebook
           # periods of high load.
           if entry['messaging'.freeze]
 	          entry['messaging'.freeze].each do |messaging|
-	          	puts "A"
-	          	puts messaging
 	            Facebook::Messenger::Bot.receive(messaging)
 	          end
 	        elsif entry['standby'.freeze]
 	          entry['standby'.freeze].each do |messaging|
-	          	puts "B"
-	          	puts messaging
-	            Facebook::Messenger::Bot.receive(messaging)
+	            Facebook::Messenger::Bot.receive_standby(messaging)
 	          end	        	
 	        else
 	          entry['changes'.freeze].each do |convo|
