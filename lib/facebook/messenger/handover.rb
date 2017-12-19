@@ -2,7 +2,6 @@ require 'httparty'
 
 module Facebook
   module Messenger
-    # This module handles subscribing and unsubscribing Applications to Pages.
     module Handover
       include HTTParty
 
@@ -13,6 +12,7 @@ module Facebook
       module_function
 
       def pass_thread_control(settings, access_token:)
+      	puts settings
         response = post '/pass_thread_control', body: settings.to_json, query: {
           access_token: access_token
         }
@@ -23,6 +23,7 @@ module Facebook
       end
 
       def take_thread_control(settings, access_token:)
+      	puts settings
         response = post '/take_thread_control', body: settings.to_json, query: {
           access_token: access_token
         }
