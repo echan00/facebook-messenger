@@ -128,7 +128,7 @@ module Facebook
         events['entry'.freeze].each do |entry|
           # If the application has subscribed to webhooks other than Messenger,
           # 'messaging' won't be available and it is not relevant to us.
-          next unless (entry['messaging'.freeze] || entry['changes'.freeze || entry['standby'.freeze])
+          next unless (entry['messaging'.freeze] || entry['changes'.freeze] || entry['standby'.freeze])
           # Facebook may batch several items in the 'messaging' array during
           # periods of high load.
           if entry['messaging'.freeze]
