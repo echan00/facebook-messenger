@@ -9,7 +9,7 @@ module Facebook
 
         def log_type
           if @messaging['message'].present?
-          	if @messaging['message']['is_echo'] == true
+          	if @messaging['message']['is_echo'].present?
           		return 'standby-message-echo'
 	          else
 		          return 'standby-message'
