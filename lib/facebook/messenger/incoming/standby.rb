@@ -7,6 +7,18 @@ module Facebook
       class Standby
         include Facebook::Messenger::Incoming::Common
 
+        def message?
+          @messaging['message'].present?
+        end
+
+        def delivery?
+          @messaging['delivery'].present?
+        end
+
+        def read?
+          @messaging['read'].present?
+        end                
+
         def text
           @messaging['message']['text']
         end
