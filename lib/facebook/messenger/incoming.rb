@@ -28,8 +28,8 @@ module Facebook
         'referral' => Referral,
         'message_echo' => MessageEcho,
         'message_request' => MessageRequest,
-        'pass_thread_control' => PassthreadControl,
-        'take_thread_control' => TakethreadControl,
+        'pass_thread_control' => PassThreadControl,
+        'take_thread_control' => TakeThreadControl,
         'app_roles' => AppRoles,
         'standby' => Standby
       }.freeze
