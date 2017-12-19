@@ -1,18 +1,18 @@
 module Facebook
   module Messenger
-    module Standby
+    module Incoming
       # The Referral class represents an incoming Facebook Messenger pass_thread_control.
       #
       # https://developers.facebook.com/docs/messenger-platform/referral-params
-      class MessageHandover
+      class Standby
         include Facebook::Messenger::Incoming::Common
 
-        def page_id
-          @messaging['entry']['id']
+        def text
+          @messaging['message']['text']
         end
 
-        def standby_messages
-          @messaging['standby']
+        def seq
+          @messaging['message']['seq']
         end
 
       end
