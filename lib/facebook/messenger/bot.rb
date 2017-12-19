@@ -76,10 +76,8 @@ module Facebook
         end
 
         # Used for receiving webhooks about feed changes (updates to fb page), NOT MESSENGER
-        def receive_standby(payload)
-        	callback = Facebook::Messenger::Incoming::Standby.new(payload)
-        	event = Facebook::Messenger::Incoming::EVENTS.invert[callback.class]
-        	trigger(event.to_sym, payload)
+        def receive_standby(payload)        	
+        	trigger(:standby, Facebook::Messenger::Incoming::Standby.new(payload))
         end
 
         # Used for receiving webhooks about feed changes (updates to fb page), NOT MESSENGER
