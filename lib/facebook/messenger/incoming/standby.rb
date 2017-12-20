@@ -30,6 +30,12 @@ module Facebook
         def seq
           @messaging['message']['seq']
         end
+
+        def quick_reply
+          return unless @messaging['message']['quick_reply']
+
+          @messaging['message']['quick_reply']['payload']
+        end        
       end
     end
   end
