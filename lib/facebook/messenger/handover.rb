@@ -5,7 +5,7 @@ module Facebook
     module Handover
       include HTTParty
 
-      base_uri 'https://graph.facebook.com/v2.6/me'
+      base_uri 'https://graph.facebook.com/v3.0/me'
 
       format :json
 
